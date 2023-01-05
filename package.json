@@ -23,7 +23,7 @@
     "migration:generate": "pnpm run build && pnpm run typeorm migration:generate -d ./orm.config.ts -p ",
     "migration:run": "pnpm run build && pnpm run typeorm migration:run -d ./orm.config.ts",
     "migration:example": "pnpm run build && pnpm run migration:generate ./src/database/migrations/UsersTableInitialization",
-    "migration:rollback": "pnpm run build && pnpm run typeorm migration:revert"
+    "migration:rollback": "pnpm run build && pnpm run typeorm migration:revert -d ./orm.config.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -40,6 +40,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
+    "ts-node": "^10.9.1",
     "typeorm": "^0.3.11",
     "webpack": "^5.0.0"
   },
