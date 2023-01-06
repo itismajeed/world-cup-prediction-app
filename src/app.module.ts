@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from '../database/data-source';
 import { LibModule } from './lib/lib.module';
+import { UsersHttpModule } from './users-http/users-http.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { LibModule } from './lib/lib.module';
     }),
     TypeOrmModule.forRoot(dataSourceOptions),
     LibModule,
+    UsersHttpModule,
   ],
   controllers: [AppController],
   providers: [AppService],
