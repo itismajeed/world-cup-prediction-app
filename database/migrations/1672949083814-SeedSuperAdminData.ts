@@ -2,7 +2,6 @@ import { PasswordEncryptionService } from 'src/lib/password-encryption.service';
 import { MigrationInterface, QueryRunner } from 'typeorm';
 import { config } from 'dotenv';
 import { randomUUID } from 'crypto';
-console.log({ __dirname });
 
 config();
 
