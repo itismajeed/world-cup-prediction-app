@@ -10,7 +10,7 @@ export class CreateUsersTable1672948531177 implements MigrationInterface {
                 \`fullName\` varchar(255) NOT NULL,
                 \`email\` varchar(255) NOT NULL,
                 \`password\` varchar(255) NOT NULL,
-                \`isActive\` tinyint NOT NULL,
+                \`isActive\` tinyint NOT NULL DEFAULT 0,
                 \`createdAt\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
                 \`updatedAt\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
                 PRIMARY KEY (\`id\`)
