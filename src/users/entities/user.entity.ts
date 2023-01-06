@@ -16,7 +16,7 @@ export class User {
   email: string;
   @Column()
   password: string;
-  @Column()
+  @Column({ default: false })
   isActive: boolean;
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
