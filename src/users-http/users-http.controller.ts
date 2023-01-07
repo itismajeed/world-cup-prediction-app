@@ -6,40 +6,58 @@ import {
   Patch,
   Param,
   Delete,
+  Inject,
+  NotAcceptableException,
+  BadRequestException,
 } from '@nestjs/common';
-import { UsersService } from 'src/users/users.service';
-import { CreateUsersHttpDto } from './dto/create-users-http.dto';
-import { UpdateUsersHttpDto } from './dto/update-users-http.dto';
-
-@Controller('users-http')
+import { ApiTags } from '@nestjs/swagger';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import {
+  IUsersService,
+  USERS_SERVICE_TOKEN,
+} from 'src/users/interfaces/users-service.interface';
+@ApiTags('Users')
+@Controller('users')
 export class UsersHttpController {
-  constructor(private readonly usersService: UsersService) {}
-
+  constructor(
+    @Inject(USERS_SERVICE_TOKEN) private readonly usersService: IUsersService,
+  ) {}
   @Post()
-  create(@Body() createUsersHttpDto: CreateUsersHttpDto) {
-    return this.usersService.create(createUsersHttpDto);
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
   }
-
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  something() {
+    return {
+      numb: 1232,
+      salam: 23,
+    };
+  }
+  @Get('abbas')
+  somethingElse() {
+    throw new BadRequestException();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
-  }
+  // @Get()
+  // findAll() {
+  //   return this.usersService.findAll();
+  // }
 
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateUsersHttpDto: UpdateUsersHttpDto,
-  ) {
-    return this.usersService.update(+id, updateUsersHttpDto);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.usersService.findOne(+id);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
-  }
+  // @Patch(':id')
+  // update(
+  //   @Param('id') id: string,
+  //   @Body() updateUsersHttpDto: UpdateUsersHttpDto,
+  // ) {
+  //   return this.usersService.update(+id, updateUsersHttpDto);
+  // }
+
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.usersService.remove(+id);
+  // }
 }
