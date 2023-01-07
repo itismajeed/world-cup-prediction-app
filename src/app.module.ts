@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from '../database/data-source';
 import { LibModule } from './lib/lib.module';
 import { UsersHttpModule } from './users-http/users-http.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UsersHttpModule } from './users-http/users-http.module';
     TypeOrmModule.forRoot(dataSourceOptions),
     LibModule,
     UsersHttpModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService],
