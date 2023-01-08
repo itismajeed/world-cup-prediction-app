@@ -9,6 +9,8 @@ import {
   Inject,
   NotAcceptableException,
   BadRequestException,
+  UseInterceptors,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
@@ -17,6 +19,7 @@ import {
   USERS_SERVICE_TOKEN,
 } from 'src/users/interfaces/users-service.interface';
 @ApiTags('Users')
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('users')
 export class UsersHttpController {
   constructor(
@@ -26,27 +29,16 @@ export class UsersHttpController {
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
-  @Get()
-  something() {
-    return {
-      numb: 1232,
-      salam: 23,
-    };
-  }
-  @Get('abbas')
-  somethingElse() {
-    throw new BadRequestException();
-  }
 
   // @Get()
   // findAll() {
   //   return this.usersService.findAll();
   // }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.usersService.findOne(+id);
-  // }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.usersService.findOneById(id);
+  }
 
   // @Patch(':id')
   // update(

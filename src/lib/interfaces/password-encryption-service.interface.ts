@@ -3,4 +3,4 @@ export interface IPasswordEncryptionService {
   verify(password: string, hash: string): Promise<boolean> | boolean;
 }
 
-export const PASSWOORD_ENCRYPTION_SERVICE_TOKEN = 'IPasswordEncryptionService';
+export const PASSWORD_ENCRYPTION_SERVICE_TOKEN = 'IPasswordEncryptionService';

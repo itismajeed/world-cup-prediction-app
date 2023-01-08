@@ -4,9 +4,6 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class PasswordEncryptionService implements IPasswordEncryptionService {
-  constructor() {
-    console.log('here');
-  }
   verify(password: string, hash: string): Promise<boolean> {
     return bcrypt.compare(password, hash);
   }
